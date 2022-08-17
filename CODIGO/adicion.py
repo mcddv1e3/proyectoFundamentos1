@@ -10,7 +10,7 @@ root.geometry("800x300")
 imagenElegida=StringVar()
 global imagenElegida1
 imagenElegida1=""
-directorioR="/Users/LicHernandoSanabria/MODULOII/PROYECTOFINAL/COVID19/"
+directorioR="C:\Users\LicHernandoSanabria\MODULOII\PROYECTO"
 def select_file():
     filetypes = (
         ('png files', '*.png'),
