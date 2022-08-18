@@ -10,7 +10,7 @@ root.geometry("800x300")
 imagenElegida=StringVar()
 global imagenElegida1
 imagenElegida1=""
-directorioR="C:\Users\LicHernandoSanabria\MODULOII\PROYECTO"
+directorioR="C:/Users/LicHernandoSanabria/MODULOII/PROYECTO"
 def select_file():
     filetypes = (
         ('png files', '*.png'),
@@ -32,16 +32,16 @@ def refrescar(value,value1):
     imagen2=imagen1[len(imagen1)-1]
     if value == "COVID":
         covid2=Covid.Covid('NombreProvisional.png',directorioR)
-        covid2.adicionar(imagen2,'95878i.jpg','http://todo2.com','IMAGENESADICION/imagenes','IMAGENESADICION/mascaras')
+        covid2.adicionar(imagen2,'95878i.jpg','http://todo2.com','IMAGENESADICION/imagenes','IMAGENESADICION/mascaras','DATOS')
     if value == "Lung_Opacity":
         LungOpacity1=LungOpacity.LungOpacity('NombreProvisional.png',directorioR)
-        LungOpacity1.adicionar(imagen2,'95878i.jpg','http://todo2.com','IMAGENESADICION/imagenes','IMAGENESADICION/mascaras')
+        LungOpacity1.adicionar(imagen2,'95878i.jpg','http://todo2.com','IMAGENESADICION/imagenes','IMAGENESADICION/mascaras','DATOS')
     if value == "Normal":
         Normal1=Normal.Normal('NombreProvisional.png',directorioR)
-        Normal1.adicionar(imagen2,'95878i.jpg','http://todo2.com','IMAGENESADICION/imagenes','IMAGENESADICION/mascaras')    
+        Normal1.adicionar(imagen2,'95878i.jpg','http://todo2.com','IMAGENESADICION/imagenes','IMAGENESADICION/mascaras','DATOS')    
     if value == "Viral Pneumonia":
         ViralPneumonia1=ViralPneumonia.ViralPneumonia('NombreProvisional.png',directorioR)
-        ViralPneumonia1.adicionar(imagen2,'95878i.jpg','http://todo2.com','IMAGENESADICION/imagenes','IMAGENESADICION/mascaras')    
+        ViralPneumonia1.adicionar(imagen2,'95878i.jpg','http://todo2.com','IMAGENESADICION/imagenes','IMAGENESADICION/mascaras','DATOS')    
 i=0
 btnEnv=Button(root,text="Leer Archivo",command=select_file).grid(row=i)    
 i=i+1

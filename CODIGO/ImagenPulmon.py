@@ -6,7 +6,7 @@ class ImagenPulmon:
     self.nombre=nombre#el nombre de la imagen
     self.raiz=raiz#el directorio raiz donde se trabajara por ejemplo c:/PROYECTOFINAL
     self.directorio=directorio#el directorio donde pertenece la imagen ejm. COVID, Lung_Opacity    
-  def adicionar(self,nombre_imagen,nombre_mascara,url,dir_imagenes,dir_mascaras):
+  def adicionar(self,nombre_imagen,nombre_mascara,url,dir_imagenes,dir_mascaras,dir_datos):
     #print('nombre '+self.nombre+' directorio '+str(self.directorio)+' nombre imagen a adicionar '+nombre_imagen)
     """
     -se obtiene la extension del archivo de imagen para obtener su tipo
@@ -21,7 +21,7 @@ class ImagenPulmon:
     extension2=extension1[-1]
     #print(extension2)
     #determinamos el nombre que nos corresponde para grabar
-    df=pd.read_excel(self.raiz+"/"+self.directorio+".metadata.xlsx")
+    df=pd.read_excel(self.raiz+"/"+dir_datos+"/"+self.directorio+".metadata.xlsx")
     #print(df)
     ultimo=df.loc[df.index[-1],"FILE NAME"]
     ultimo1=ultimo.split("-")
@@ -38,8 +38,8 @@ class ImagenPulmon:
     alto=img.shape[1]
     csize=str(ancho)+"*"+str(alto)
     #print(csize)
-    shutil.copy(imagen_copiar,self.raiz+"/"+self.directorio+"/images/"+ultimo_file_name)
+    shutil.copy(imagen_copiar,self.raiz+"/"+dir_datos+"/"+self.directorio+"/images/"+ultimo_file_name)
     #agregando al excel el registro correspondiente
     nuevo_registro={"FILE NAME":ultimo_file_name_nextension,"FORMAT":extension2,"SIZE":csize,"URL":url}
     df=df.append(nuevo_registro,ignore_index=True)
-    df.to_excel(self.raiz+"/"+self.directorio+".metadata.xlsx",index=False)
+    df.to_excel(self.raiz+"/"+dir_datos+"/"+self.directorio+".metadata.xlsx",index=False)
