@@ -15,7 +15,7 @@ class ImagenPulmon:
     que es sumar en 1 el ultimo nombre, usamos un data frame para esto (df)
     -obteniendo los datos de la imágen:se obtiene el ancho, alto de la imagen a ser copiada
     -se agrega al excel el registro correspondiente
-    """
+    """    
     #obteniendo la extension del archivo de imagen para obtener su tipo
     extension1=nombre_imagen.split(".")
     extension2=extension1[-1]
@@ -30,7 +30,12 @@ class ImagenPulmon:
     ultimo_mas1=ultimo_numero+1
     ultimo_file_name_nextension=self.directorio+"-"+str(ultimo_mas1)
     ultimo_file_name=self.directorio+"-"+str(ultimo_mas1)+"."+extension2
-    print(ultimo_file_name)
+    #obteniendo el nombre de la mascara con su extension
+    extensionm1=nombre_mascara.split(".")
+    extensionm2=extensionm1[-1]    
+    ultimo_file_mname=self.directorio+"-"+str(ultimo_mas1)+"."+extensionm2
+    print(nombre_mascara)
+    print(ultimo_file_mname)
     #obteniendo los datos de la imágen ancho alto
     imagen_copiar=self.raiz+"/"+dir_imagenes+"/"+nombre_imagen
     img=cv2.imread(imagen_copiar,cv2.IMREAD_UNCHANGED)
@@ -39,6 +44,11 @@ class ImagenPulmon:
     csize=str(ancho)+"*"+str(alto)
     #print(csize)
     shutil.copy(imagen_copiar,self.raiz+"/"+dir_datos+"/"+self.directorio+"/images/"+ultimo_file_name)
+    #copiando mascara
+    imagen_mascara_copiar=self.raiz+"/"+dir_mascaras+"/"+nombre_mascara
+    print(imagen_mascara_copiar)
+    print(self.raiz+"/"+dir_datos+"/"+self.directorio+"/masks/"+ultimo_file_mname)
+    shutil.copy(imagen_mascara_copiar,self.raiz+"/"+dir_datos+"/"+self.directorio+"/masks/"+ultimo_file_mname)
     #agregando al excel el registro correspondiente
     nuevo_registro={"FILE NAME":ultimo_file_name_nextension,"FORMAT":extension2,"SIZE":csize,"URL":url}
     df=df.append(nuevo_registro,ignore_index=True)
