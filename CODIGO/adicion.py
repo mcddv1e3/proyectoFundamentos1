@@ -2,8 +2,9 @@ import Covid
 import LungOpacity
 import Normal
 import ViralPneumonia
-from tkinter import Tk, Button, Label, Radiobutton, Entry, StringVar
+from tkinter import Tk, Button, Label, Radiobutton, Entry, StringVar,messagebox
 from tkinter import filedialog
+import os
 
 """
 -Módulo que sirve para poder mostrar la ventana
@@ -30,7 +31,7 @@ def select_file():
     )
     imagenElegida2 = filedialog.askopenfilename(
         title='Open a file',
-        initialdir=directorioR+"/IMAGENESADICION/imagenes",
+        initialdir=directorioR + "/IMAGENESADICION/imagenes",
         filetypes=filetypes)
     imagenElegida.set(imagenElegida2)
 
@@ -52,32 +53,55 @@ def refrescar(value, value1, vurl1, imagen_mascara):
     """
     Esta función sirve para poder realizar la adición de las imágenes
     """
-    imagen1 = value1.split('/')
-    imagen2 = imagen1[len(imagen1)-1]
-    imagenm1 = imagen_mascara.split('/')
-    imagenm2 = imagenm1[len(imagenm1)-1]
-    if value == "COVID":
-        covid2 = Covid.Covid('NombreProvisional.png', directorioR)
-        covid2.adicionar(imagen2, imagenm2,
-                         vurl1, 'IMAGENESADICION/imagenes',
-                         'IMAGENESADICION/mascaras', 'DATOS')
-    if value == "Lung_Opacity":
-        LungOpacity1 = LungOpacity.LungOpacity('NombreProvisional.png',
-                                               directorioR)
-        LungOpacity1.adicionar(imagen2, imagenm2,
-                               vurl1, 'IMAGENESADICION/imagenes',
-                               'IMAGENESADICION/mascaras', 'DATOS')
-    if value == "Normal":
-        Normal1 = Normal.Normal('NombreProvisional.png', directorioR)
-        Normal1.adicionar(imagen2, imagenm2,
-                          vurl1, 'IMAGENESADICION/imagenes',
-                          'IMAGENESADICION/mascaras', 'DATOS')
-    if value == "Viral Pneumonia":
-        ViralPneumonia1 = ViralPneumonia.ViralPneumonia(
-                        'NombreProvisional.png', directorioR)
-        ViralPneumonia1.adicionar(imagen2, imagenm2,
-                                  vurl1, 'IMAGENESADICION/imagenes',
-                                  'IMAGENESADICION/mascaras', 'DATOS')
+    vresul = 1
+    if not os.path.exists(value1):
+        vresul = 0
+    if not os.path.exists(imagen_mascara):
+        vresul = 0
+    if vresul == 1:
+        imagen1 = value1.split('/')
+        imagen2 = imagen1[len(imagen1)-1]
+        imagenm1 = imagen_mascara.split('/')
+        imagenm2 = imagenm1[len(imagenm1)-1]
+        if value == "COVID":
+            covid2 = Covid.Covid('NombreProvisional.png', directorioR)
+            vresul = covid2.adicionar(
+                                        imagen2,
+                                        imagenm2,
+                                        vurl1,
+                                        'IMAGENESADICION/imagenes',
+                                        'IMAGENESADICION/mascaras',
+                                        'DATOS'
+                                     )
+        if value == "Lung_Opacity":
+            LungOpacity1 = LungOpacity.LungOpacity('NombreProvisional.png',
+                                                   directorioR)
+            vresul = LungOpacity1.adicionar(
+                                            imagen2,
+                                            imagenm2,
+                                            vurl1,
+                                            'IMAGENESADICION/imagenes',
+                                            'IMAGENESADICION/mascaras',
+                                            'DATOS'
+                                            )
+        if value == "Normal":
+            Normal1 = Normal.Normal('NombreProvisional.png', directorioR)
+            vresul = Normal1.adicionar(
+                                        imagen2, imagenm2,
+                                        vurl1, 'IMAGENESADICION/imagenes',
+                                        'IMAGENESADICION/mascaras', 'DATOS')
+        if value == "Viral Pneumonia":
+            ViralPneumonia1 = ViralPneumonia.ViralPneumonia(
+                            'NombreProvisional.png', directorioR)
+            vresul = ViralPneumonia1.adicionar(
+                                                imagen2, imagenm2,
+                                                vurl1, 'IMAGENESADICION/imagenes',
+                                                'IMAGENESADICION/mascaras', 'DATOS'
+                                             )
+    if vresul == 1:
+        messagebox.showinfo(message="Se guardaron los cambios satisfactoriamente")
+    else:
+        messagebox.showinfo(message="Ocurrio algun error")
 
 
 i = 0
