@@ -2,16 +2,18 @@ import Covid
 import LungOpacity
 import Normal
 import ViralPneumonia
-from tkinter import Tk, Button, Label, Radiobutton, Entry, StringVar,messagebox
+from tkinter import Tk, Button, Label, Radiobutton, Entry, StringVar, messagebox
 from tkinter import filedialog
 import os
 
-"""
--Módulo que sirve para poder mostrar la ventana
-que realiza la adición de imágenes
--Se ha evaluado este archivo con flake8
-comando flake8 .\adicion.py
+"""Módulo que sirve para poder mostrar la ventana que realiza la adición de imágenes
+See also
+--------
+Se ha evaluado este archivo con flake8
+comando flake8 adicion.py
 se ha dejado sin errores
+con excepción de E501 line too long (82 > 79 characters)
+puesto de que las ventanas actuales aceptan mas caracteres
 """
 
 root = Tk()
@@ -24,6 +26,12 @@ directorioR = "C:/Users/LicHernandoSanabria/MODULOII/PROYECTO"
 
 
 def select_file():
+    """Esta funcion selecciona una imagen para poder adicionar a la carpeta images con filedialog
+    Returns
+    ----------
+    imagenElegida : str
+                Es la imagen elegida que va ha ser adicionada con toda su ruta
+    """
     filetypes = (
         ('png files', '*.png'),
         ('jpg files', '*.jpg'),
