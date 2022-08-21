@@ -212,7 +212,8 @@ class ImagenPulmon:
 
         except IndexError as e:
             vtodo_bien = 0
-
+        except :
+            vtodo_bien = 0
         if vtodo_bien == 1:
             df.iloc[indice]['FORMAT'] = 'PNG'
             df.iloc[indice]['SIZE'] = '256*256'

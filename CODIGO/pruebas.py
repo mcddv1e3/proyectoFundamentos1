@@ -48,7 +48,7 @@ class TestAdicion(unittest.TestCase):
         (prueba de golpe sabemos que resultado debe darnos)
         indica que hubo un error
         """
-        covid2 = Covid.Covid('NombreProvisional.png', 'C:/Users/LicHernandoSanabria/')
+        covid2 = Covid.Covid('NombreProvisional.png', 'C:/Users/LicHernandoSanabria/MODULOII/PROYECTO')
         vresul = covid2.adicionar(
                                     '95878.jpg',
                                     'estudios-de-imagen-covid-19.jpg',
@@ -66,7 +66,7 @@ class TestAdicion(unittest.TestCase):
         (prueba de golpe sabemos que resultado debe darnos)
         indica que hubo un error
         """
-        normal1 = Normal.Normal('NombreProvisional.png', 'C:/Users/LicHernandoSanabria/')
+        normal1 = Normal.Normal('NombreProvisional.png', 'C:/Users/LicHernandoSanabria/MODULOII/PROYECTO')
         vresul = normal1.adicionar(
                                     '95878.jpg',
                                     'estudios-de-imagen-covid-19.jpg',
@@ -82,7 +82,7 @@ class TestAdicion(unittest.TestCase):
         """
         Mandamos una imagen que no existe para guardar deberia de lanzar la excepcion FileNotFoundError
         """
-        covid2 = Covid.Covid('NombreProvisional.png', 'C:/Users/LicHernandoSanabria/')
+        covid2 = Covid.Covid('NombreProvisional.png', 'C:/Users/LicHernandoSanabria/MODULOII/PROYECTO')
         vresul = covid2.adicionar(
                                     '123234.jpg',
                                     'estudios-de-imagen-covid-19.jpg',
@@ -98,7 +98,7 @@ class TestAdicion(unittest.TestCase):
         """
         Mandamos una imagen que no existe para guardar deberia de lanzar la excepcion FileNotFoundError
         """
-        viralPneumonia1 = ViralPneumonia.ViralPneumonia('NombreProvisional.png', 'C:/Users/LicHernandoSanabria/')
+        viralPneumonia1 = ViralPneumonia.ViralPneumonia('NombreProvisional.png', 'C:/Users/LicHernandoSanabria/MODULOII/PROYECTO')
         vresul = viralPneumonia1.adicionar(
                                     '123234.jpg',
                                     'estudios-de-imagen-covid-19.jpg',
@@ -110,6 +110,17 @@ class TestAdicion(unittest.TestCase):
         print("prueba borde")
         print(vresul)
 
-
+    def test_prueba_borde2(self):
+        """
+        Mandamos una imagen que no existe para modificar deberia de lanzar la excepcion IndexError lo cual se comprueba viendo el resultado de la variable vtodo_bien
+        """
+        viralPneumonia1 = ViralPneumonia.ViralPneumonia('NombreProvisional.png', 'C:/Users/LicHernandoSanabria/MODULOII/PROYECTO')
+        vresul = viralPneumonia1.modificar(
+                                    '123234.jpg',
+                                    '123234.jpg',
+                                    'DATOS'
+                                )
+        print("prueba borde modificacion")
+        print(vresul)
 suite = unittest.TestLoader().loadTestsFromTestCase(TestAdicion)
 _ = unittest.TextTestRunner().run(suite)
